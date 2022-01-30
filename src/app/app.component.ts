@@ -13,4 +13,8 @@ export class AppComponent {
     console.log(this.queens);
     new QueensPuzzle(this.queens).backtrackingIterative();
   }
+
+  counter(i: number) {
+    return new Array(i);
+  }
 }

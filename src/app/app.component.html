@@ -4,3 +4,16 @@
   </label>
 </div>
 <button (click)="this.backtrackingIterative()">Backtracking iterative</button>
+
+<div class="table">
+  <div
+    *ngFor="let x of counter(this.queens); let row = index"
+    class="row">
+    <!--    row - {{i}}-->
+    <span
+      *ngFor="let x of counter(this.queens); let column = index"
+      class="column column--{{ (row + column + 1) % 2 === 0 ? 'even':'odd'}}">
+<!--      col - {{i}}-->
+    </span>
+  </div>
+</div>
