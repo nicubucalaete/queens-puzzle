@@ -1,1 +1,6 @@
-<button (click)="this.queensPuzzle.backtrackingIterativ()">Backtracking iterativ</button>
+<div>
+  <label> Number of queens on the table:
+    <input type="number" [(ngModel)]="queens">
+  </label>
+</div>
+<button (click)="this.backtrackingIterative()">Backtracking iterative</button>

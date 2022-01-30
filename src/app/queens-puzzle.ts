@@ -3,29 +3,22 @@ export class QueensPuzzle {
   constructor(private n: number) {
   }
 
-  backtrackingIterativ() {
+  backtrackingIterative() {
     // solution[k] = i - queen is on the row k and column i
     let solution: number[] = [];
 
-    let totalSolution = 0;
+    let solutionsCount = 0;
     let k = 1;
     solution[k] = 0;
 
     while (k > 0) {
-      solution[k] = solution[k] + 1;
-
-      let valid = solution[k] <= this.n;
-      for (let j = 1; j < k; j++) {
-        if ((solution[k] === solution[j]) || (Math.abs(k - j) === Math.abs(solution[k] - solution[j]))) {
-          valid = false;
-          break;
-        }
-      }
+      this.generateNewPossibleSolution(solution, k);
+      let valid = this.isValidPartialSolution(solution, k);
 
       if (valid) {
         if (k === this.n) {
           console.log('Solution found:', solution);
-          totalSolution++;
+          solutionsCount++;
         } else {
           k++;
           solution[k] = 0;
@@ -38,7 +31,22 @@ export class QueensPuzzle {
       }
     }
 
-    console.log('Found total solutions: ', totalSolution);
+    console.log('Found solutions found: ', solutionsCount);
+  }
+
+  private isValidPartialSolution(solution: number[], k: number) {
+    let valid = solution[k] <= this.n;
+    for (let j = 1; j < k; j++) {
+      if ((solution[k] === solution[j]) || (Math.abs(k - j) === Math.abs(solution[k] - solution[j]))) {
+        valid = false;
+        break;
+      }
+    }
+    return valid;
+  }
+
+  private generateNewPossibleSolution(solution: number[], k: number) {
+    solution[k] = solution[k] + 1;
   }
 
   backtrackingRecursive() {

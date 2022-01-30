@@ -7,9 +7,10 @@ import { QueensPuzzle } from './queens-puzzle';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'queens-puzzle';
-  queensPuzzle: QueensPuzzle = new QueensPuzzle(8);
+  queens: number = 4;
 
-  constructor() {
+  backtrackingIterative() {
+    console.log(this.queens);
+    new QueensPuzzle(this.queens).backtrackingIterative();
   }
 }
