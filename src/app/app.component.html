@@ -9,11 +9,12 @@
   <div
     *ngFor="let x of counter(this.queens); let row = index"
     class="row">
-    <!--    row - {{i}}-->
     <span
       *ngFor="let x of counter(this.queens); let column = index"
       class="column column--{{ (row + column + 1) % 2 === 0 ? 'even':'odd'}}">
-<!--      col - {{i}}-->
+      <img
+        *ngIf="shouldShowQueen(row, column)"
+        src="assets/quuen.svg.webp">
     </span>
   </div>
 </div>
