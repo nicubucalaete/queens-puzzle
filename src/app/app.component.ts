@@ -8,7 +8,7 @@ import { QueensPuzzle } from './queens-puzzle';
 })
 export class AppComponent {
   title = 'queens-puzzle';
-  queensPuzzle: QueensPuzzle = new QueensPuzzle(4);
+  queensPuzzle: QueensPuzzle = new QueensPuzzle(8);
 
   constructor() {
   }

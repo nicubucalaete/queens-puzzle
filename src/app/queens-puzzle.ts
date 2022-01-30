@@ -7,6 +7,7 @@ export class QueensPuzzle {
     // solution[k] = i - queen is on the row k and column i
     let solution: number[] = [];
 
+    let totalSolution = 0;
     let k = 1;
     solution[k] = 0;
 
@@ -24,6 +25,7 @@ export class QueensPuzzle {
       if (valid) {
         if (k === this.n) {
           console.log('Solution found:', solution);
+          totalSolution++;
         } else {
           k++;
           solution[k] = 0;
@@ -35,6 +37,8 @@ export class QueensPuzzle {
         }
       }
     }
+
+    console.log('Found total solutions: ', totalSolution);
   }
 
   backtrackingRecursive() {
