@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { QueensPuzzle } from './queens-puzzle';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'queens-puzzle';
+  queensPuzzle: QueensPuzzle = new QueensPuzzle(4);
+
+  constructor() {
+  }
 }
