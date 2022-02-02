@@ -1,5 +1,6 @@
 .table {
-  margin: 10rem;
+  margin-top: 2rem;
+  margin-left: 2rem;
 }
 
 .row {
@@ -7,8 +8,8 @@
 }
 
 .column {
-  width: 55px;
-  height: 55px;
+  min-width: 55px;
+  min-height: 55px;
   text-align: center;
 
   &--odd {
