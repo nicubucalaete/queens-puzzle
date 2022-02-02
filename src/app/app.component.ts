@@ -14,8 +14,18 @@ export class AppComponent {
   }
 
   backtrackingIterative() {
-    console.log(this.queens);
     let queensPuzzle = new QueensPuzzle(this.queens);
+    this.subscribeForSolutionNotification(queensPuzzle);
+    queensPuzzle.backtrackingIterative();
+  }
+
+  backtrackingRecursive() {
+    let queensPuzzle = new QueensPuzzle(this.queens);
+    this.subscribeForSolutionNotification(queensPuzzle);
+    queensPuzzle.backtrackingRecursive(1, []);
+  }
+
+  private subscribeForSolutionNotification(queensPuzzle: QueensPuzzle) {
     // TODO find a better way fro delaying every value
     let initialTimeout = 700;
     let times = 1;
@@ -27,7 +37,7 @@ export class AppComponent {
         console.log('solution:', solution);
       }, initialTimeout * times);
     }));
-    queensPuzzle.backtrackingIterative();
+    return queensPuzzle;
   }
 
   counter(i: number) {
@@ -36,10 +46,5 @@ export class AppComponent {
 
   shouldShowQueen(row: number, column: number) {
     return this.solution[row + 1] === column + 1;
-  }
-
-  backtrackingRecursive() {
-    let queensPuzzle = new QueensPuzzle(this.queens);
-    queensPuzzle.backtrackingRecursive(1, []);
   }
 }

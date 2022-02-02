@@ -2,6 +2,7 @@ import { Observable, Subject } from 'rxjs';
 
 export class QueensPuzzle {
   subject = new Subject();
+  private solutionFound = false;
 
   constructor(private n: number) {
   }
@@ -31,13 +32,13 @@ export class QueensPuzzle {
           k++;
           solution[k] = 0;
         }
-        this.subject.next(solution.slice(0));
+        this.notifyPartialSolution(solution);
       } else {
         if (solution[k] > this.n) {
           solution.pop();
           k--;
         }
-        this.subject.next(solution.slice(0));
+        this.notifyPartialSolution(solution);
       }
     }
 
@@ -61,17 +62,30 @@ export class QueensPuzzle {
 
   // solution[k] = i - queen is on the row k and column i
   backtrackingRecursive(k: number, solution: number[]) {
+    if (this.solutionFound) {
+      return;
+    }
     if (k === this.n + 1) {
       console.log('Solution found:', solution);
+      this.solutionFound = true;
     } else {
-      for (let i = 1; i <= this.n; i++) {
+      for (let i = 1; i <= this.n && !this.solutionFound; i++) {
         solution[k] = i;
+
+        this.notifyPartialSolution(solution);
+
         let valid = this.isValidPartialSolution(solution, k);
 
         if (valid) {
           this.backtrackingRecursive(k + 1, solution);
+        } else {
+          solution.pop();
         }
       }
     }
+  }
+
+  private notifyPartialSolution(solution: number[]) {
+    this.subject.next(solution.slice(0));
   }
 }
