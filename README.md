@@ -20,5 +20,5 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 ## Deploy to production
 ```
-ng deploy --base-href=/queens-puzzle/
+npm run deploy
 ```
