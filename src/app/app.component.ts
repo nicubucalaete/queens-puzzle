@@ -37,4 +37,9 @@ export class AppComponent {
   shouldShowQueen(row: number, column: number) {
     return this.solution[row + 1] === column + 1;
   }
+
+  backtrackingRecursive() {
+    let queensPuzzle = new QueensPuzzle(this.queens);
+    queensPuzzle.backtrackingRecursive(1, []);
+  }
 }

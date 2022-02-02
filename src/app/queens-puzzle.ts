@@ -59,7 +59,19 @@ export class QueensPuzzle {
     solution[k] = solution[k] + 1;
   }
 
-  backtrackingRecursive() {
+  // solution[k] = i - queen is on the row k and column i
+  backtrackingRecursive(k: number, solution: number[]) {
+    if (k === this.n + 1) {
+      console.log('Solution found:', solution);
+    } else {
+      for (let i = 1; i <= this.n; i++) {
+        solution[k] = i;
+        let valid = this.isValidPartialSolution(solution, k);
 
+        if (valid) {
+          this.backtrackingRecursive(k + 1, solution);
+        }
+      }
+    }
   }
 }
