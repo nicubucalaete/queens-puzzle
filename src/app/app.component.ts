@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { QueensPuzzle } from './queens-puzzle';
+import { concatMap, delay, of } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -26,16 +27,12 @@ export class AppComponent {
   }
 
   private subscribeForSolutionNotification(queensPuzzle: QueensPuzzle) {
-    // TODO find a better way fro delaying every value
-    let initialTimeout = 700;
-    let times = 1;
-    queensPuzzle.getObservable().subscribe((solution => {
-      times++;
-      setTimeout(() => {
-        this.solution = solution;
-        this.cdr.detectChanges();
-        console.log('solution:', solution);
-      }, initialTimeout * times);
+    queensPuzzle.getObservable().pipe(
+      concatMap(item => of(item).pipe(delay(700)))
+    ).subscribe((solution => {
+      this.solution = solution;
+      this.cdr.detectChanges();
+      console.log('solution:', solution);
     }));
     return queensPuzzle;
   }
