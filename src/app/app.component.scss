@@ -1,3 +1,8 @@
+.header {
+  display: grid;
+  grid-template-columns: max-content 50px;
+}
+
 .table {
   margin-top: 2rem;
   margin-left: 2rem;
@@ -11,6 +16,7 @@
   min-width: 55px;
   min-height: 55px;
   text-align: center;
+  box-sizing: border-box;
 
   &--odd {
     background-color: #FFCE9D;
@@ -18,5 +24,13 @@
 
   &--even {
     background-color: #D18B46;
+  }
+
+  &--conflicting {
+    border: red 2px solid;
+  }
+
+  &--solution {
+    border: green 2px solid;
   }
 }

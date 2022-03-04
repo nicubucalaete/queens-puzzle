@@ -1,9 +1,14 @@
-<div>
-  <label> Number of queens on the table:
-    <input type="number" [(ngModel)]="queens">
-  </label>
+<div class="header">
+  <label for="queens"> Number of queens on the table:</label>
+  <input type="number" [(ngModel)]="queens" id="queens">
+  <label for="delay"> Delay (milliseconds): </label>
+  <input type="number" [(ngModel)]="delay" id="delay">
 </div>
+
+<br>
 <button (click)="this.backtrackingIterative()">Backtracking iterative</button>
+<br>
+<br>
 <button (click)="this.backtrackingRecursive()">Backtracking recursive</button>
 
 <div class="table">
@@ -12,7 +17,7 @@
     class="row">
     <span
       *ngFor="let x of counter(this.queens); let column = index"
-      class="column column--{{ (row + column + 1) % 2 === 0 ? 'even':'odd'}}">
+      [class]="getQueenCssClass(row, column)">
       <img
         *ngIf="shouldShowQueen(row, column)"
         src="assets/quuen.svg.webp">
